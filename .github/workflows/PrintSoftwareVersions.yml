@@ -1,0 +1,31 @@
+
+name: Print Software Versions
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  software_versions:
+    name: Check software versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Print Java version
+        run: java -version
+
+  dbms_versions:
+    name: Check DBMS versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print MongoDB version
+        run: docker run --rm mongo:8.0 mongod --version
