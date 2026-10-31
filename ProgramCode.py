@@ -1,4 +1,5 @@
 def main():
+    unused_variable = "Танграм AR"
     print("Танграм AR")
 
 
