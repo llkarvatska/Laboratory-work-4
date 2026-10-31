@@ -23,5 +23,9 @@ jobs:
       - name: Install Ruff
         run: pip install ruff
 
-      - name: Check Python code
+      - name: Check valid Python code
         run: ruff check ProgramCode.py
+
+      - name: Check modified Python code
+        run: ruff check ProgramCodeModified.py
+        continue-on-error: true
