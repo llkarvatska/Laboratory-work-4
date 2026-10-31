@@ -1,0 +1,31 @@
+name: Data Schema Code Convention
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  sql_schema_lint:
+    name: Check SQL schema conventions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install SQLFluff
+        run: pip install sqlfluff==4.5.0
+
+      - name: Check valid SQL schema
+        run: sqlfluff lint DataSchema.sql --dialect sqlite --exclude-rules CP02
+
+      - name: Check modified SQL schema
+        run: sqlfluff lint DataSchemaModified.sql --dialect sqlite --exclude-rules CP02
+        continue-on-error: true
