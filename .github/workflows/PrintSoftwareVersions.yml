@@ -28,4 +28,4 @@ jobs:
 
     steps:
       - name: Print MongoDB version
-        run: docker run --rm mongo:8.0 mongod --version
+        run: docker run --rm mongo:7.0 mongod --version
